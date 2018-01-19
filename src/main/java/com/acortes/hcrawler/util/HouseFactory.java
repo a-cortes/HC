@@ -43,5 +43,22 @@ public class HouseFactory {
 		return house;
 
 	}
+	public static House createStubHouse() {
+		String dateS = UtilMethods.formatDateString(new Date(), "yyyy-MM-dd");
+		House house = new House();
+		house.setCiudad("Morelia");
+		house.setColonia("Reforma");
+		house.setUrl("NULL");
+		house.setMtsConstruccion(123);
+		house.setMtsTerreno(123);
+		house.setTipo("NULL");
+		house.setPrice(123);
+		house.setUrlDate("null" + " DATE:" + dateS);
+		house.setFechaRegistro(new Date());
+		house.setSource("ML");
+		
+		return house;
+		
+	}
 
 }
