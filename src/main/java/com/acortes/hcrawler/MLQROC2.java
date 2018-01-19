@@ -58,11 +58,11 @@ public class MLQROC2 {
 				url = Normalizer.normalize(url, Normalizer.Form.NFD);
 				url = url.replaceAll("[^\\p{ASCII}]", "");
 				System.out.println(url);
-				HtmlPage hoodPage = HoodController.hoodCrawler(url);
-				if(hoodPage == null) {
-					System.out.println("Error " + url);
-				
-				}
+//				HtmlPage hoodPage = HoodController.hoodCrawler(url);
+//				if(hoodPage == null) {
+//					System.out.println("Error " + url);
+//				
+//				}
 				
 				
 				
