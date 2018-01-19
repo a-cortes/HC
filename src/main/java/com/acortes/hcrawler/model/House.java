@@ -21,6 +21,8 @@ import javax.persistence.Table;
 public class House {
 
 	@Id
+	int id;
+	
 	@Column(name = "UrlDate", unique = true, nullable = false)
 	String urlDate;
 

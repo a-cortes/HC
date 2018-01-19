@@ -53,9 +53,9 @@ public class HouseFactory {
 		house.setMtsTerreno(123);
 		house.setTipo("NULL");
 		house.setPrice(123);
-		house.setUrlDate("null" + " DATE:" + dateS);
+		house.setUrlDate(Math.random() + " DATE:" + dateS);
 		house.setFechaRegistro(new Date());
-		house.setSource("ML");
+		house.setSource("TEST");
 		
 		return house;
 		

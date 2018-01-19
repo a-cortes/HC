@@ -8,10 +8,7 @@ package com.acortes.hcrawler;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
