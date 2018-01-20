@@ -53,6 +53,7 @@ local.properties
 .worksheet
 
 target/
+.project
 
 ### Intellij Idea Stuff
 .idea/
