@@ -1,4 +1,4 @@
-package com.acortes.hcrawler.dao;
+package com.housedata.dao;
 
 import java.util.Date;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.acortes.hcrawler.model.House;
+import com.housedata.model.House;
 
 @Repository("houseDao")
 public class HouseDaoImpl extends AbstractDao implements HouseDao {

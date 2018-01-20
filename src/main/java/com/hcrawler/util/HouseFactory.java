@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acortes.hcrawler.util;
+package com.hcrawler.util;
 
 import java.util.Date;
 
-import com.acortes.hcrawler.model.House;
+import com.housedata.model.House;
 
 public class HouseFactory {
 	public static House createHouse() {

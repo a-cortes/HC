@@ -1,4 +1,4 @@
-package com.acortes.hcrawler.steps;
+package com.hcrawler.scrapers;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,9 +1,9 @@
-package com.acortes.hcrawler.dao;
+package com.housedata.dao;
 
 import java.util.Date;
 import java.util.List;
 
-import com.acortes.hcrawler.model.House;
+import com.housedata.model.House;
 
 public interface HouseDao {
 	void saveHouse(House House);

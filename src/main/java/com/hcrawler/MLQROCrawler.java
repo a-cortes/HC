@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.acortes.hcrawler;
+package com.hcrawler;
 
 import java.io.IOException;
-import java.text.Normalizer;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -14,11 +13,6 @@ import java.util.List;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
-import com.acortes.hcrawler.configuration.AppConfig;
-import com.acortes.hcrawler.model.House;
-import com.acortes.hcrawler.service.HouseService;
-import com.acortes.hcrawler.util.HouseFactory;
-import com.acortes.hcrawler.util.UtilMethods;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
@@ -26,13 +20,39 @@ import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.hcrawler.config.AppConfig;
+import com.hcrawler.util.HouseFactory;
+import com.hcrawler.util.UtilMethods;
+import com.housedata.model.House;
+import com.housedata.service.HouseService;
 
-public class MLQROC2 {
+public class MLQROCrawler {
 
 	public static void main(String[] args) throws IOException, ParseException {
 		// Hibernate Objects
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		HouseService hibService = (HouseService) context.getBean("houseService");
+		// {
+		// ///Hood situation calc
+		// System.out.println("HOOD:");
+		// long priceSum=0,mtsTerSum=0,mtsConsSum=0;
+		// int contCasas=0;
+		// Date date = UtilMethods.formatDate(new Date());
+		// List<House> casasColonia =
+		// hibService.findAllHousesByCityHood("Queretaro", "Juriquilla",date);
+		//
+		// for (House house : casasColonia){
+		// priceSum+=house.getPrice();
+		// mtsTerSum+=house.getMtsTerreno();
+		// mtsConsSum+=house.getMtsConstruccion();
+		// contCasas++;
+		//
+		// }
+		// System.out.println("precio avg: "+(priceSum/contCasas)+
+		// " Precio cons avg: "+ (mtsConsSum/contCasas) + " Precio ter avg:
+		// "+(mtsTerSum/contCasas));
+		// if(true)return;
+		// }
 
 		// Start crawling
 		System.out.println("Starting");
@@ -42,43 +62,59 @@ public class MLQROC2 {
 		// WebClient(BrowserVersion.CHROME,"172.28.97.24", 8080);
 		WebClient webClient = new WebClient(BrowserVersion.FIREFOX_45);
 		
-		webClient.getOptions().setJavaScriptEnabled(false);
+		webClient.getOptions().setJavaScriptEnabled(true);
 	 	webClient.getOptions().setThrowExceptionOnScriptError(false);
 	 	webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
 
+		// Get first page of the city
+		HtmlPage pageCiudad = null;
+
+		try {
+			pageCiudad = webClient.getPage("http://inmuebles.mercadolibre.com.mx/venta/queretaro/queretaro/");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage().substring(0, 2000));
+		}
+		//System.out.println(pageCiudad.asText());
 		
-			HtmlPage pageCity = webClient.getPage("http://inmuebles.mercadolibre.com.mx/venta/queretaro/queretaro/");
-			//System.out.println(pageColonia.asText());
-			List coloniasPrueba = (List) pageCity.getByXPath("//*[@id=\"neighborhood-filter-form\"]/div/div[3]/div/div/div[2]/div/div/label");
-			System.out.println(coloniasPrueba.size());
-			for (Object coloniaHtmlO : coloniasPrueba) {
-				HtmlElement coloniaHtml =  (HtmlElement) coloniaHtmlO;
-				String url = "https://inmuebles.mercadolibre.com.mx/venta/queretaro/queretaro/" + 
-						coloniaHtml.getTextContent().replaceAll(" ", "-").replace("", "")+"/";
-				url = Normalizer.normalize(url, Normalizer.Form.NFD);
-				url = url.replaceAll("[^\\p{ASCII}]", "");
-				System.out.println(url);
-//				HtmlPage hoodPage = HoodController.hoodCrawler(url);
-//				if(hoodPage == null) {
-//					System.out.println("Error " + url);
-//				
-//				}
-				
-				
-				
+		
+		HtmlElement mas = pageCiudad.getFirstByXPath("//*[@id=\"id_neighborhood\"]/label");
+
+		// open more... menu
+		HtmlPage pageColonian = mas.click();
+		System.out.println(pageColonian.asText());
+		
+		if(true)return;
+		// get all the hoods
+		List colonias = (List) pageCiudad.getByXPath("//*[@id=\"id_neighborhood\"]/dd");
+
+		colonias.remove(colonias.size() - 1);
+		colonias.addAll((List) pageCiudad.getByXPath("//*[@id=\"id_neighborhood\"]/dd[10]/dl/dd"));
+
+		// Lood on the hoods
+		// to save all the house of current hood
+		colonias: for (Object coloniaHtmlO : colonias) {
+			HtmlElement coloniaHtml =  (HtmlElement) coloniaHtmlO;
+			DomNodeList<HtmlElement> elementsByTagName = coloniaHtml.getElementsByTagName("a");
+			String colonia = null;
+			for (HtmlElement a : elementsByTagName) {
+				colonia = a.asText();
 			}
-			if (true) return;
-			
+			System.out.println(colonia + "----------------------");
+			/// Get first page for the colonia
+
+			HtmlAnchor link = pageCiudad.getAnchorByText(colonia);
+			HtmlPage pageColonia = link.click();
+
 			/// GET all pages
-			HtmlPage pageColonia = null;
 			HtmlAnchor linkSiguiente = null;
 			do {
 				linkSiguiente = null;
 				try {
-					linkSiguiente = pageColonia.getFirstByXPath("//*[@id=\"results-section\"]/div[2]/ul/li[12]/a");
+					linkSiguiente = pageColonia.getAnchorByText("Siguiente >");
 					pageColonia = linkSiguiente.click();
 				} catch (Exception ex) {
-					System.out.println("End of pages of");
+					System.out.println("End of pages of" + colonia);
 				}
 
 				// the previwe of houses comes li elements there is one big and
@@ -179,7 +215,7 @@ public class MLQROC2 {
 
 									Date date = UtilMethods.formatDate(new Date());
 
-									House house = HouseFactory.createHouse(date, "Queretaro", "", linkCasa,
+									House house = HouseFactory.createHouse(date, "Queretaro", colonia, linkCasa,
 											mtsTerreno, mtsConstruccion, tipo, precio, "ML");
 
 									hibService.saveHouse(house);
@@ -202,6 +238,10 @@ public class MLQROC2 {
 
 			} while (linkSiguiente != null && false);
 			/// end of pages
+
+			break colonias;// Only one hood
+
+		}
 	}
 
 }

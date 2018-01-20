@@ -1,9 +1,9 @@
-package com.acortes.hcrawler.service;
+package com.housedata.service;
 
 import java.util.Date;
 import java.util.List;
 
-import com.acortes.hcrawler.model.House;
+import com.housedata.model.House;
 
 public interface HouseService {
 	void saveHouse(House House);

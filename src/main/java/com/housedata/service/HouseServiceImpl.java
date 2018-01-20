@@ -1,4 +1,4 @@
-package com.acortes.hcrawler.service;
+package com.housedata.service;
 
 import java.util.Date;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.acortes.hcrawler.dao.HouseDao;
-import com.acortes.hcrawler.model.House;
+import com.housedata.dao.HouseDao;
+import com.housedata.model.House;
 
 @Service("houseService")
 @Transactional

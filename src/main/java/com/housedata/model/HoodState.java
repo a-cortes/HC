@@ -1,4 +1,4 @@
-package com.acortes.hcrawler.model;
+package com.housedata.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.acortes.hcrawler.util;
+package com.hcrawler.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

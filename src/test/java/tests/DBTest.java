@@ -6,10 +6,10 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
-import com.acortes.hcrawler.configuration.AppConfig;
-import com.acortes.hcrawler.model.House;
-import com.acortes.hcrawler.service.HouseService;
-import com.acortes.hcrawler.util.HouseFactory;
+import com.hcrawler.config.AppConfig;
+import com.hcrawler.util.HouseFactory;
+import com.housedata.model.House;
+import com.housedata.service.HouseService;
 
 public class DBTest {
 
