@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hcrawler.util;
+package com.real_estates.util;
 
 import java.util.Date;
 
-import com.housedata.model.House;
+import com.real_estates.housedata.model.House;
 
 public class HouseFactory {
 	public static House createHouse() {

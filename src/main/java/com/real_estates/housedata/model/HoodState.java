@@ -1,4 +1,4 @@
-package com.housedata.model;
+package com.real_estates.housedata.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

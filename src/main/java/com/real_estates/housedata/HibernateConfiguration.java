@@ -1,4 +1,4 @@
-package com.hcrawler.config;
+package com.real_estates.housedata;
 
 import java.util.Properties;
 
@@ -29,13 +29,13 @@ public class HibernateConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.housedata.model" });
+		sessionFactory.setPackagesToScan("com.housedata.model");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}
 
 	@Bean
-	public DataSource dataSource() {
+	private DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
 		dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));

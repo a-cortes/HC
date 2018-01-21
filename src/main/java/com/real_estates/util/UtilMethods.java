@@ -1,4 +1,4 @@
-package com.hcrawler.util;
+package com.real_estates.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

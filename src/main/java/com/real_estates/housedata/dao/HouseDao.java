@@ -1,9 +1,9 @@
-package com.housedata.dao;
+package com.real_estates.housedata.dao;
+
+import com.real_estates.housedata.model.House;
 
 import java.util.Date;
 import java.util.List;
-
-import com.housedata.model.House;
 
 public interface HouseDao {
 	void saveHouse(House House);

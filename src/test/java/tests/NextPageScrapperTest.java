@@ -1,10 +1,8 @@
 package tests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-import com.hcrawler.scrapers.MercadoLibreScrapperMethods;
+import com.real_estates.hcrawler.scrapers.MercadoLibreScrapperMethods;
 
 public class NextPageScrapperTest {
 

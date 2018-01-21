@@ -1,4 +1,4 @@
-package com.housedata.dao;
+package com.real_estates.housedata.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

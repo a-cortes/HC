@@ -1,9 +1,9 @@
-package com.housedata.service;
+package com.real_estates.housedata.service;
 
 import java.util.Date;
 import java.util.List;
 
-import com.housedata.model.House;
+import com.real_estates.housedata.model.House;
 
 public interface HouseService {
 	void saveHouse(House House);

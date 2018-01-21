@@ -1,4 +1,4 @@
-package com.hcrawler.scrapers;
+package com.real_estates.hcrawler.scrapers;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -112,8 +112,7 @@ public class MercadoLibreSteps {
 				String hoodUrl = hoodUrls.poll();
 
 				if (hoodUrl != null) {
-					MercadoLibreScrapperMethods.scrapHousesFromUrl(hoodUrl);
-
+					System.out.println("Searching houses in: "+hoodUrl);
 				} 
 				else {
 					try {
