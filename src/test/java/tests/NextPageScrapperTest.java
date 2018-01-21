@@ -10,7 +10,7 @@ public class NextPageScrapperTest {
 
 	@Test
 	public void test() {
-		MercadoLibreScrapperMethods.getHousesLinksFromUrl("https://inmuebles.mercadolibre.com.mx/venta/queretaro/queretaro/centro-sur/");
+		MercadoLibreScrapperMethods.scrapHousesFromUrl("https://inmuebles.mercadolibre.com.mx/venta/queretaro/queretaro/centro-sur/");
 	}
 
 }

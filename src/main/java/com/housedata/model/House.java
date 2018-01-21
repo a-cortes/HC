@@ -22,122 +22,94 @@ public class House {
 
 	@Id
 	int id;
-	
-	@Column(name = "UrlDate", unique = true, nullable = false)
-	String urlDate;
 
-	@Column(name = "Precio", nullable = true)
+	@Column(name = "Price", nullable = true)
 	private long price;
 
 	@Column(name = "Url", nullable = true)
 	private String url;
 
-	@Column(name = "Colonia", nullable = false)
-	private String colonia;
+	@Column(name = "Hood", nullable = false)
+	private String hood;
 
-	private int mtsTerreno;
-	private int mtsConstruccion;
-	private String ciudad;
-	private double precioMtTerreno;
-	private double precioMtCons;
-	private String tipo;
-	private Date fechaRegistro;
+	private int fieldMts;
+	private int constructionMts;
+	private String city;
+	private double fieldMtPrice;
+	private double constructionMtPrice;
+	private String type;
+	private Date registerDate;
 	private String source;
-
-	public String getSource() {
-		return source;
+	public int getId() {
+		return id;
 	}
-
-	public void setSource(String source) {
-		this.source = source;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public Date getFechaRegistro() {
-		return fechaRegistro;
-	}
-
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
-
-	public String getUrlDate() {
-		return urlDate;
-	}
-
-	public void setUrlDate(String urlDate) {
-		this.urlDate = urlDate;
-	}
-
-	public int getMtsTerreno() {
-		return mtsTerreno;
-	}
-
-	public void setMtsTerreno(int mtsTerreno) {
-		this.mtsTerreno = mtsTerreno;
-	}
-
-	public int getMtsConstruccion() {
-		return mtsConstruccion;
-	}
-
-	public void setMtsConstruccion(int mtsConstruccion) {
-		this.mtsConstruccion = mtsConstruccion;
-	}
-
-	public double getPrecioMtTerreno() {
-		return precioMtTerreno;
-	}
-
-	public void setPrecioMtTerreno(double precioMtTerreno) {
-		this.precioMtTerreno = precioMtTerreno;
-	}
-
-	public double getPrecioMtCons() {
-		return precioMtCons;
-	}
-
-	public void setPrecioMtCons(double precioMtCons) {
-		this.precioMtCons = precioMtCons;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
 	public long getPrice() {
 		return price;
 	}
-
 	public void setPrice(long price) {
 		this.price = price;
 	}
-
 	public String getUrl() {
 		return url;
 	}
-
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	public String getColonia() {
-		return colonia;
+	public String getHood() {
+		return hood;
 	}
-
-	public void setColonia(String colonia) {
-		this.colonia = colonia;
+	public void setHood(String hood) {
+		this.hood = hood;
 	}
-
-	public String getCiudad() {
-		return ciudad;
+	public int getFieldMts() {
+		return fieldMts;
 	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	public void setFieldMts(int fieldMts) {
+		this.fieldMts = fieldMts;
 	}
-
+	public int getConstructionMts() {
+		return constructionMts;
+	}
+	public void setConstructionMts(int constructionMts) {
+		this.constructionMts = constructionMts;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public double getFieldMtPrice() {
+		return fieldMtPrice;
+	}
+	public void setFieldMtPrice(double fieldMtPrice) {
+		this.fieldMtPrice = fieldMtPrice;
+	}
+	public double getConstructionMtPrice() {
+		return constructionMtPrice;
+	}
+	public void setConstructionMtPrice(double constructionMtPrice) {
+		this.constructionMtPrice = constructionMtPrice;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
 }

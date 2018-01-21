@@ -7,14 +7,23 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.housedata.model.House;
 
 public class MercadoLibreScrapperMethods {
-	public static List<String> getHousesLinksFromUrl(String hoodUrl) {
+	private static WebClient getWebClient() {
+		
 		WebClient webClient = new WebClient(BrowserVersion.FIREFOX_45);
 
 		webClient.getOptions().setJavaScriptEnabled(true);
 		webClient.getOptions().setThrowExceptionOnScriptError(false);
 		webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+		return webClient;
+		
+	}
+	
+	
+	public static void scrapHousesFromUrl(String hoodUrl) {
+		WebClient webClient = getWebClient();
 
 		ArrayList<String> housesLinks = new ArrayList<String>();
 
@@ -47,7 +56,72 @@ public class MercadoLibreScrapperMethods {
 			System.out.println("End of pages of" + hoodUrl);
 		}
 		webClient.close();
-		return housesLinks;
+		
+	}
+	
+	/*
+	 * 
+	 * Completes info for the house gotten in index
+	 * 
+	 * 
+	 */
+	public static House completeHouseInfo(House house) {
+		WebClient webClient = getWebClient();
+		
+		int constructionMts = 0;
+		int fieldMts = 0;
+		String type = null;
+		String houseUrl = house.getUrl();
+
+		// Get page to scrap
+		HtmlPage housePage = null;
+		try {
+			housePage = webClient.getPage(houseUrl);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		if(housePage != null) {
+			String houseXml = housePage.asXml();
+			String mtsAux = null;
+
+			// Metros Construccion
+			if (houseXml.contains("Superficie de construcción:")) {
+				houseXml = houseXml.substring(houseXml.indexOf("Superficie de construcción:"),
+						houseXml.length());
+				mtsAux = houseXml.substring(houseXml.indexOf("<span class=\"attribute-value\">"),
+						houseXml.indexOf("m²"));
+				mtsAux = mtsAux.replaceAll("\\D+", "");
+				constructionMts = Integer.valueOf(mtsAux);
+			}
+
+			// Metros Terreno
+			if (houseXml.contains("Superficie de terreno:")) {
+				houseXml = houseXml.substring(houseXml.indexOf("Superficie de terreno:"),
+						houseXml.length());
+				mtsAux = houseXml.substring(houseXml.indexOf("<span class=\"attribute-value\">"),
+						houseXml.indexOf("m²"));
+				mtsAux = mtsAux.replaceAll("\\D+", "");
+				fieldMts = Integer.valueOf(mtsAux);
+			}
+			// Tipo de inmueble
+			
+			if (houseUrl.contains("casa.mercadolibre"))
+				type = "Casa";
+			if (houseUrl.contains("departamento.mercadolibre"))
+				type = "Departamento";
+			if (houseUrl.contains("terreno.mercadolibre"))
+				type = "Terreno";
+			
+			System.out.println(type + " "+constructionMts+" "+fieldMts);
+			
+			house.setConstructionMts(constructionMts);
+			house.setFieldMts(fieldMts);
+			house.setType(type);
+		}
+		
+		return house;
+		
 	}
 
 }

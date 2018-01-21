@@ -20,21 +20,20 @@ public class HouseFactory {
 
 		String dateS = UtilMethods.formatDateString(date, "yyyy-MM-dd");
 		House house = new House();
-		house.setCiudad(ciudad);
-		house.setColonia(colonia);
+		house.setCity(ciudad);
+		house.setHood(colonia);
 		house.setUrl(linkCasa);
-		house.setMtsConstruccion(mtsConstruccion);
-		house.setMtsTerreno(mtsTerreno);
-		house.setTipo(tipo);
+		house.setConstructionMts(mtsConstruccion);
+		house.setFieldMts(mtsTerreno);
+		house.setType(tipo);
 		house.setPrice(price);
-		house.setUrlDate(linkCasa + " DATE:" + dateS);
-		house.setFechaRegistro(date);
+		house.setRegisterDate(date);
 		house.setSource(source);
 		try {
 			if (mtsConstruccion != 0)
-				house.setPrecioMtCons(price / mtsConstruccion);
+				house.setConstructionMtPrice(price / mtsConstruccion);
 			if (mtsTerreno != 0)
-				house.setPrecioMtTerreno(price / mtsTerreno);
+				house.setFieldMtPrice(price / mtsTerreno);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,15 +45,14 @@ public class HouseFactory {
 	public static House createStubHouse() {
 		String dateS = UtilMethods.formatDateString(new Date(), "yyyy-MM-dd");
 		House house = new House();
-		house.setCiudad("Morelia");
-		house.setColonia("Reforma");
-		house.setUrl("NULL");
-		house.setMtsConstruccion(123);
-		house.setMtsTerreno(123);
-		house.setTipo("NULL");
+		house.setCity("Morelia");
+		house.setHood("Reforma");
+		house.setUrl("TEST");
+		house.setConstructionMts(123);
+		house.setFieldMts(123);
+		house.setType("TEST");
 		house.setPrice(123);
-		house.setUrlDate(Math.random() + " DATE:" + dateS);
-		house.setFechaRegistro(new Date());
+		house.setRegisterDate(new Date());
 		house.setSource("TEST");
 		
 		return house;

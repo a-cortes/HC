@@ -40,17 +40,17 @@ public class HouseDaoImpl extends AbstractDao implements HouseDao {
 	@Override
 	public List<House> findAllHousesbyHood(String city, String hood, Date date) {
 		Criteria criteria = getSession().createCriteria(House.class);
-		criteria.add(Restrictions.eq("ciudad", city));
-		criteria.add(Restrictions.eq("fechaRegistro", date));
-		criteria.add(Restrictions.eq("colonia", hood));
+		criteria.add(Restrictions.eq("city", city));
+		criteria.add(Restrictions.eq("registerDate", date));
+		criteria.add(Restrictions.eq("hood", hood));
 		return (List<House>) criteria.list();
 	}
 
 	@Override
 	public List<House> findAllHousesbyCity(String city, Date date) {
 		Criteria criteria = getSession().createCriteria(House.class);
-		criteria.add(Restrictions.eq("ciudad", city));
-		criteria.add(Restrictions.eq("fechaRegistro", date));
+		criteria.add(Restrictions.eq("city", city));
+		criteria.add(Restrictions.eq("registerDate", date));
 		return (List<House>) criteria.list();
 	}
 

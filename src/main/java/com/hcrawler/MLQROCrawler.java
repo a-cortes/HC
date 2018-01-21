@@ -169,10 +169,10 @@ public class MLQROCrawler {
 							if (houseDB != null) {
 								System.out.println("Casa en DB");
 								Date date = UtilMethods.formatDate(new Date());
-								House h = HouseFactory.createHouse(date, houseDB.getCiudad(), houseDB.getColonia(),
-										houseDB.getUrl(), houseDB.getMtsTerreno(), houseDB.getMtsConstruccion(),
-										houseDB.getTipo(), houseDB.getPrice(), houseDB.getSource());
-								hibService.saveHouse(h);
+//								House h = HouseFactory.createHouse(date, houseDB.getCiudad(), houseDB.getColonia(),
+//										houseDB.getUrl(), houseDB.getMtsTerreno(), houseDB.getMtsConstruccion(),
+//										houseDB.getTipo(), houseDB.getPrice(), houseDB.getSource());
+//								hibService.saveHouse(h);
 							} else {
 								////
 								try {
@@ -219,7 +219,7 @@ public class MLQROCrawler {
 											mtsTerreno, mtsConstruccion, tipo, precio, "ML");
 
 									hibService.saveHouse(house);
-									System.out.println(hibService.findById(house.getUrlDate()).getPrice());
+									//System.out.println(hibService.findById(house.getUrlDate()).getPrice());
 									;
 
 								} catch (Exception ex) {

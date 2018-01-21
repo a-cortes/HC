@@ -112,7 +112,8 @@ public class MercadoLibreSteps {
 				String hoodUrl = hoodUrls.poll();
 
 				if (hoodUrl != null) {
-					System.out.println("Searching houses in: "+hoodUrl);
+					MercadoLibreScrapperMethods.scrapHousesFromUrl(hoodUrl);
+
 				} 
 				else {
 					try {
