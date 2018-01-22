@@ -24,6 +24,10 @@ public class Orchestrator {
         tasks.addAll(new MercadoLibreScrapper(
                 "https://inmuebles.mercadolibre.com.mx/casas/venta/baja-california/tijuana/",
                 setupDriver).getTasks());
+        
+        tasks.addAll(new MercadoLibreScrapper(
+                "https://inmuebles.mercadolibre.com.mx/casas/venta/queretaro/queretaro/",
+                setupDriver).getTasks());
 
         WebDriverPoolService.release(setupDriver);
 
