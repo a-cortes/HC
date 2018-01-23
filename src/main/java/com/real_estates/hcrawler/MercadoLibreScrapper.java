@@ -26,7 +26,7 @@ public class MercadoLibreScrapper implements TaskSubmitter {
 
         //TODO: Add error handling (Element not found)
         int entriesPerPage = getEntries(driver).size();
-        int totalEntries = getResultsCount(driver);
+        float totalEntries = getResultsCount(driver);
 
         int totalPages = (int) Math.ceil(totalEntries / entriesPerPage);
 
