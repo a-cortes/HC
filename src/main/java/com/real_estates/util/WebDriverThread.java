@@ -10,7 +10,7 @@ public class WebDriverThread {
 	private final String operatingSystem = System.getProperty("os.name").toUpperCase();
 	private final String systemArchitecture = System.getProperty("os.arch");
 
-	public WebDriver getDriver() throws Exception {
+	public WebDriver getDriver() {
 
 		if (null == webdriver) {
 			System.out.println(" ");
@@ -18,8 +18,6 @@ public class WebDriverThread {
 			System.out.println("Current Architecture: " + systemArchitecture);
 			System.out.println("Current Browser Selection: Chrome");
 			System.out.println(" ");
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\acortes\\Desktop\\code\\Tools\\drivers\\chromedriver.exe");
 
 			webdriver = new ChromeDriver();
 		}

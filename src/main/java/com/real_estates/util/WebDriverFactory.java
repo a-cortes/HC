@@ -22,12 +22,12 @@ public class WebDriverFactory {
         };
     }
 
-    public static WebDriver getDriver() throws Exception {
+    public static WebDriver getDriver() {
         return driverThread.get().getDriver();
     }
 
     
-    public static void clearCookies() throws Exception {
+    public static void clearCookies() {
         getDriver().manage().deleteAllCookies();
     }
 

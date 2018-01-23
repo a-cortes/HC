@@ -12,6 +12,8 @@ public class DriverPoolTest {
 
 	@Test
 	public void test() throws Exception {
+		System.setProperty("webdriver.chrome.driver", "/opt/chromedriver");
+
 		int limit = 2;
 		
 		ExecutorService executor = Executors.newFixedThreadPool(limit);
