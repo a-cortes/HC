@@ -1,13 +1,13 @@
 package tests;
 
-import com.real_estates.housedata.model.House;
-import com.real_estates.util.HouseFactory;
+import com.realestate.hcrawler.orchestration.AppConfig;
+import com.realestate.hcrawler.util.HouseFactory;
+import com.realestate.housedata.model.House;
+import com.realestate.housedata.service.HouseService;
+
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-
-import com.real_estates.orchestration.AppConfig;
-import com.real_estates.housedata.service.HouseService;
 
 public class DBTest {
 

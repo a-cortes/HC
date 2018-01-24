@@ -1,12 +1,13 @@
-package com.real_estates.housedata.dao;
+package com.realestate.housedata.dao;
 
 import java.util.Date;
 import java.util.List;
 
-import com.real_estates.housedata.model.House;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
+import com.realestate.housedata.model.House;
 
 @Repository("houseDao")
 public class HouseDaoImpl extends AbstractDao implements HouseDao {

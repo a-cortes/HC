@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import com.real_estates.util.WebDriverFactory;
+import com.realestate.hcrawler.orchestration.WebDriverFactory;
 
 public class DriverPoolTest {
 

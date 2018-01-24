@@ -1,8 +1,8 @@
-package com.real_estates.orchestration;
+package com.realestate.hcrawler.orchestration;
 
-import com.real_estates.hcrawler.MercadoLibreScrapper;
-import com.real_estates.hcrawler.Property;
-import com.real_estates.util.WebDriverFactory;
+import com.realestate.hcrawler.MercadoLibreScrapper;
+import com.realestate.hcrawler.Property;
+
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
@@ -27,9 +27,9 @@ public class Orchestrator {
                 "https://inmuebles.mercadolibre.com.mx/casas/venta/baja-california/tijuana/",
                 setupDriver).getTasks());
         
-//        tasks.addAll(new MercadoLibreScrapper(
-//                "https://inmuebles.mercadolibre.com.mx/casas/venta/queretaro/queretaro/",
-//                setupDriver).getTasks());
+        tasks.addAll(new MercadoLibreScrapper(
+                "https://inmuebles.mercadolibre.com.mx/casas/venta/queretaro/queretaro/",
+                setupDriver).getTasks());
 
         System.out.printf("Working with %d tasks \n", tasks.size());
 

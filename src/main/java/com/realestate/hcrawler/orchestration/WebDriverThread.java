@@ -1,4 +1,4 @@
-package com.real_estates.util;
+package com.realestate.hcrawler.orchestration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

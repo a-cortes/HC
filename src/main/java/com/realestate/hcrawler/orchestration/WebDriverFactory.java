@@ -1,4 +1,4 @@
-package com.real_estates.util;
+package com.realestate.hcrawler.orchestration;
 
 import java.util.ArrayList;
 import java.util.Collections;

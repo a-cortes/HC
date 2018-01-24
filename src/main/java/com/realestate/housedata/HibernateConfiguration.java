@@ -1,4 +1,4 @@
-package com.real_estates.housedata;
+package com.realestate.housedata;
 
 import java.util.Properties;
 
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.hcrawler.configuration" })
+@ComponentScan({ "com.realestate.housedata" })
 @PropertySource(value = { "classpath:application.properties" })
 public class HibernateConfiguration {
 
@@ -29,13 +29,13 @@ public class HibernateConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("com.housedata.model");
+		sessionFactory.setPackagesToScan("com.realestate.housedata");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}
 
 	@Bean
-	private DataSource dataSource() {
+	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
 		dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));

@@ -2,8 +2,8 @@ package tests;
 
 import org.junit.Test;
 
-import com.real_estates.hcrawler.scrapers.MercadoLibreScrapperMethods;
-import com.real_estates.housedata.model.House;
+import com.realestate.hcrawler.scrapers.MercadoLibreScrapperMethods;
+import com.realestate.housedata.model.House;
 
 public class HouseScrapperTest {
 

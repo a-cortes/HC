@@ -1,10 +1,11 @@
-package com.real_estates.housedata.service;
+package com.realestate.housedata.service;
 
 import java.util.Date;
 import java.util.List;
 
-import com.real_estates.housedata.dao.HouseDao;
-import com.real_estates.housedata.model.House;
+import com.realestate.housedata.dao.HouseDao;
+import com.realestate.housedata.model.House;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

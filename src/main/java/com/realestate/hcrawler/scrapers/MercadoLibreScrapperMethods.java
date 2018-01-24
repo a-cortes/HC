@@ -1,4 +1,4 @@
-package com.real_estates.hcrawler.scrapers;
+package com.realestate.hcrawler.scrapers;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.real_estates.housedata.model.House;
+import com.realestate.housedata.model.House;
 
 public class MercadoLibreScrapperMethods {
 	private static WebClient getWebClient() {

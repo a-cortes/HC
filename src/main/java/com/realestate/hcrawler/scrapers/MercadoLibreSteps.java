@@ -1,4 +1,4 @@
-package com.real_estates.hcrawler.scrapers;
+package com.realestate.hcrawler.scrapers;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -2,7 +2,7 @@ package tests;
 
 import org.junit.Test;
 
-import com.real_estates.hcrawler.scrapers.MercadoLibreScrapperMethods;
+import com.realestate.hcrawler.scrapers.MercadoLibreScrapperMethods;
 
 public class NextPageScrapperTest {
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.real_estates.housedata.model;
+package com.realestate.housedata.model;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.real_estates.hcrawler;
+package com.realestate.hcrawler;
 
 
 public class Property {
