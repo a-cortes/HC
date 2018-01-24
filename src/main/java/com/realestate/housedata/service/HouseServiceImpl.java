@@ -25,17 +25,6 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public void deleteHouseBySsn(String ssn) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public PropertySale findById(String ssn) {
-		return dao.findById(ssn);
-	}
-
-	@Override
 	public void updateHouse(PropertySale House) {
 		// TODO Auto-generated method stub
 

@@ -14,9 +14,5 @@ public interface HouseService {
 
 	PropertySale findByUrl(String url);
 
-	void deleteHouseBySsn(String ssn);
-
-	PropertySale findById(String ssn);
-
 	void updateHouse(PropertySale House);
 }
