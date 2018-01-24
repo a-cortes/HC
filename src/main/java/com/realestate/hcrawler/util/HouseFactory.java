@@ -7,33 +7,37 @@ package com.realestate.hcrawler.util;
 
 import java.util.Date;
 
-import com.realestate.housedata.model.House;
+import com.realestate.housedata.model.PropertySale;
 
 public class HouseFactory {
-	public static House createHouse() {
+	public static PropertySale createHouse() {
 
-		return new House();
+		return new PropertySale();
 	}
 
-	public static House createHouse(Date date, String ciudad, String colonia, String linkCasa, int mtsTerreno,
+	public static PropertySale createHouse(Date date,String country, String state, String ciudad, String colonia, String linkCasa, int mtsTerreno,
 			int mtsConstruccion, String tipo, long price, String source) {
 
-		String dateS = UtilMethods.formatDateString(date, "yyyy-MM-dd");
-		House house = new House();
+		//String dateS = UtilMethods.formatDateString(date, "yyyy-MM-dd");
+		PropertySale house = new PropertySale();
+		house.setState(state);
+		house.setCountry(country);
 		house.setCity(ciudad);
 		house.setHood(colonia);
 		house.setUrl(linkCasa);
-		house.setConstructionMts(mtsConstruccion);
-		house.setFieldMts(mtsTerreno);
+		house.setBuildingMts(mtsConstruccion);
+		house.setLotMts(mtsTerreno);
 		house.setType(tipo);
 		house.setPrice(price);
 		house.setRegisterDate(date);
 		house.setSource(source);
+		
+		
 		try {
 			if (mtsConstruccion != 0)
-				house.setConstructionMtPrice(price / mtsConstruccion);
+				house.setBuildingMtPrice(price / mtsConstruccion);
 			if (mtsTerreno != 0)
-				house.setFieldMtPrice(price / mtsTerreno);
+				house.setLotMtPrice(price / mtsTerreno);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,18 +46,20 @@ public class HouseFactory {
 		return house;
 
 	}
-	public static House createStubHouse() {
+	public static PropertySale createStubHouse() {
 		String dateS = UtilMethods.formatDateString(new Date(), "yyyy-MM-dd");
-		House house = new House();
+		PropertySale house = new PropertySale();
 		house.setCity("Morelia");
 		house.setHood("Reforma");
 		house.setUrl("TEST");
-		house.setConstructionMts(123);
-		house.setFieldMts(123);
+		house.setBuildingMtPrice(123);
+		house.setLotMts(123);
 		house.setType("TEST");
 		house.setPrice(123);
 		house.setRegisterDate(new Date());
 		house.setSource("TEST");
+		house.setCountry("Mexico");
+		house.setState("Michoacan");
 		
 		return house;
 		

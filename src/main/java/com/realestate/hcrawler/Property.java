@@ -5,7 +5,7 @@ public class Property {
     private float price;
     private String url;
     private Address address;
-    private int terrainSize;
+    private int lotSize;
     private int buildingSize;
     private String source;
     private int type;
@@ -43,11 +43,11 @@ public class Property {
     }
 
     public int getTerrainSize() {
-        return terrainSize;
+        return lotSize;
     }
 
     public void setTerrainSize(int terrainSize) {
-        this.terrainSize = terrainSize;
+        this.lotSize = terrainSize;
     }
 
     public int getBuildingSize() {
@@ -66,52 +66,57 @@ public class Property {
         this.source = source;
     }
 
-    public static class Address {
-        private String suburb;
-        private String town;
+    public class Address {
+    	private String neighborhood;
+        private String city;
         private String state;
         private String country;
 
         public Address() {
         }
 
-        public Address(String suburb, String town, String state, String country) {
-            this.suburb = suburb;
-            this.town = town;
-            this.state = state;
-            this.country = country;
-        }
+		public Address(String neighborhood, String city, String state, String country) {
+			super();
+			this.neighborhood = neighborhood;
+			this.city = city;
+			this.state = state;
+			this.country = country;
+		}
 
-        public String getSuburb() {
-            return suburb;
-        }
 
-        public void setSuburb(String suburb) {
-            this.suburb = suburb.toUpperCase();
-        }
 
-        public String getTown() {
-            return town;
-        }
+		public String getNeighborhood() {
+			return neighborhood;
+		}
 
-        public void setTown(String town) {
-            this.town = town.toUpperCase();
-        }
+		public void setNeighborhood(String neighborhood) {
+			this.neighborhood = neighborhood;
+		}
 
-        public String getState() {
-            return state;
-        }
+		public String getCity() {
+			return city;
+		}
 
-        public void setState(String state) {
-            this.state = state.toUpperCase();
-        }
+		public void setCity(String city) {
+			this.city = city;
+		}
 
-        public String getCountry() {
-            return country;
-        }
+		public String getState() {
+			return state;
+		}
 
-        public void setCountry(String country) {
-            this.country = country.toUpperCase();
-        }
+		public void setState(String state) {
+			this.state = state;
+		}
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
+		}
+
+        
     }
 }

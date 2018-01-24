@@ -3,21 +3,21 @@ package com.realestate.housedata.dao;
 import java.util.Date;
 import java.util.List;
 
-import com.realestate.housedata.model.House;
+import com.realestate.housedata.model.PropertySale;
 
 public interface HouseDao {
-	void saveHouse(House House);
+	void saveHouse(PropertySale House);
 
-	List<House> findAllHousesbyHood(String city, String hood, Date date);
+	List<PropertySale> findAllHousesbyHood(String city, String hood, Date date);
 
-	List<House> findAllHousesbyCity(String city, Date date);
+	List<PropertySale> findAllHousesbyCity(String city, Date date);
 
 	void deleteHouseById(String ID);
 
-	House findById(String ssn);
+	PropertySale findById(String ssn);
 
-	House findByUrl(String url);
+	PropertySale findByUrl(String url);
 
-	void updateHouse(House House);
+	void updateHouse(PropertySale House);
 
 }

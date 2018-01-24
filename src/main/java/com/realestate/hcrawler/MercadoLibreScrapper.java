@@ -79,12 +79,12 @@ public class MercadoLibreScrapper implements TaskSubmitter {
 
         if (parts.length == 4) {
             address.setState(parts[3]);
-            address.setTown(parts[2]);
-            address.setSuburb(parts[1]);
+            address.setCity(parts[2]);
+            address.setNeighborhood(parts[1]);
         } else if (parts.length == 3) {
             address.setState(parts[2]);
-            address.setTown(parts[1]);
-            address.setSuburb(parts[0]);
+            address.setCity(parts[1]);
+            address.setNeighborhood(parts[0]);
         } //TODO else: throw error/notify
 
         return address;

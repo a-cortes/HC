@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.realestate.housedata.dao.HouseDao;
-import com.realestate.housedata.model.House;
+import com.realestate.housedata.model.PropertySale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class HouseServiceImpl implements HouseService {
 	private HouseDao dao;
 
 	@Override
-	public void saveHouse(House house) {
+	public void saveHouse(PropertySale house) {
 		dao.saveHouse(house);
 
 	}
@@ -31,29 +31,29 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public House findById(String ssn) {
+	public PropertySale findById(String ssn) {
 		return dao.findById(ssn);
 	}
 
 	@Override
-	public void updateHouse(House House) {
+	public void updateHouse(PropertySale House) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<House> findAllHousesByCity(String city, Date date) {
+	public List<PropertySale> findAllHousesByCity(String city, Date date) {
 
 		return dao.findAllHousesbyCity(city, date);
 	}
 
 	@Override
-	public List<House> findAllHousesByCityHood(String city, String hood, Date date) {
+	public List<PropertySale> findAllHousesByCityHood(String city, String hood, Date date) {
 		return dao.findAllHousesbyHood(city, hood, date);
 	}
 
 	@Override
-	public House findByUrl(String url) {
+	public PropertySale findByUrl(String url) {
 		return dao.findByUrl(url);
 	}
 

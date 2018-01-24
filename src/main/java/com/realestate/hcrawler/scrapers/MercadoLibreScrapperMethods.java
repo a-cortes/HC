@@ -6,7 +6,7 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.realestate.housedata.model.House;
+import com.realestate.housedata.model.PropertySale;
 
 public class MercadoLibreScrapperMethods {
 	private static WebClient getWebClient() {
@@ -64,7 +64,7 @@ public class MercadoLibreScrapperMethods {
 	 * 
 	 * 
 	 */
-	public static House completeHouseInfo(House house) {
+	public static PropertySale completeHouseInfo(PropertySale house) {
 		WebClient webClient = getWebClient();
 		
 		int constructionMts = 0;
@@ -114,8 +114,8 @@ public class MercadoLibreScrapperMethods {
 			
 			System.out.println(type + " "+constructionMts+" "+fieldMts);
 			
-			house.setConstructionMts(constructionMts);
-			house.setFieldMts(fieldMts);
+			house.setBuildingMts(constructionMts);
+			house.setLotMts(fieldMts);
 			house.setType(type);
 		}
 		

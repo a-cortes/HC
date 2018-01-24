@@ -7,13 +7,13 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.realestate.housedata.model.House;
+import com.realestate.housedata.model.PropertySale;
 
 @Repository("houseDao")
 public class HouseDaoImpl extends AbstractDao implements HouseDao {
 
 	@Override
-	public void saveHouse(House house) {
+	public void saveHouse(PropertySale house) {
 		persist(house);
 
 	}
@@ -25,40 +25,40 @@ public class HouseDaoImpl extends AbstractDao implements HouseDao {
 	}
 
 	@Override
-	public House findById(String urlDate) {
-		Criteria criteria = getSession().createCriteria(House.class);
+	public PropertySale findById(String urlDate) {
+		Criteria criteria = getSession().createCriteria(PropertySale.class);
 		criteria.add(Restrictions.eq("urlDate", urlDate));
-		return (House) criteria.uniqueResult();
+		return (PropertySale) criteria.uniqueResult();
 	}
 
 	@Override
-	public void updateHouse(House House) {
+	public void updateHouse(PropertySale House) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<House> findAllHousesbyHood(String city, String hood, Date date) {
-		Criteria criteria = getSession().createCriteria(House.class);
+	public List<PropertySale> findAllHousesbyHood(String city, String hood, Date date) {
+		Criteria criteria = getSession().createCriteria(PropertySale.class);
 		criteria.add(Restrictions.eq("city", city));
 		criteria.add(Restrictions.eq("registerDate", date));
 		criteria.add(Restrictions.eq("hood", hood));
-		return (List<House>) criteria.list();
+		return (List<PropertySale>) criteria.list();
 	}
 
 	@Override
-	public List<House> findAllHousesbyCity(String city, Date date) {
-		Criteria criteria = getSession().createCriteria(House.class);
+	public List<PropertySale> findAllHousesbyCity(String city, Date date) {
+		Criteria criteria = getSession().createCriteria(PropertySale.class);
 		criteria.add(Restrictions.eq("city", city));
 		criteria.add(Restrictions.eq("registerDate", date));
-		return (List<House>) criteria.list();
+		return (List<PropertySale>) criteria.list();
 	}
 
 	@Override
-	public House findByUrl(String url) {
-		Criteria criteria = getSession().createCriteria(House.class);
+	public PropertySale findByUrl(String url) {
+		Criteria criteria = getSession().createCriteria(PropertySale.class);
 		criteria.add(Restrictions.eq("source", url));
-		return (House) criteria.uniqueResult();
+		return (PropertySale) criteria.uniqueResult();
 
 	}
 

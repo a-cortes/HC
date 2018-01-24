@@ -3,20 +3,20 @@ package com.realestate.housedata.service;
 import java.util.Date;
 import java.util.List;
 
-import com.realestate.housedata.model.House;
+import com.realestate.housedata.model.PropertySale;
 
 public interface HouseService {
-	void saveHouse(House House);
+	void saveHouse(PropertySale House);
 
-	List<House> findAllHousesByCity(String city, Date date);
+	List<PropertySale> findAllHousesByCity(String city, Date date);
 
-	List<House> findAllHousesByCityHood(String city, String hood, Date date);
+	List<PropertySale> findAllHousesByCityHood(String city, String hood, Date date);
 
-	House findByUrl(String url);
+	PropertySale findByUrl(String url);
 
 	void deleteHouseBySsn(String ssn);
 
-	House findById(String ssn);
+	PropertySale findById(String ssn);
 
-	void updateHouse(House House);
+	void updateHouse(PropertySale House);
 }
