@@ -1,5 +1,8 @@
 package com.realestate.hcrawler.util;
 
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +34,17 @@ public class UtilMethods {
 		SimpleDateFormat dt = new SimpleDateFormat(format);
 		String dateS = dt.format(d);
 		return dateS;
+	}
+
+	public static boolean isXpath(String expression) {
+		XPathFactory xPathFactory = XPathFactory.newInstance();
+		XPath xpath = xPathFactory.newXPath();
+		try {
+			xpath.compile(expression);
+			return true;
+		} catch (XPathExpressionException e) {
+			return false;
+		}
 	}
 
 }

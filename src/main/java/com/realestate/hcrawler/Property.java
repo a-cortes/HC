@@ -66,7 +66,7 @@ public class Property {
         this.source = source;
     }
 
-    public class Address {
+    public static class Address {
     	private String neighborhood;
         private String city;
         private String state;

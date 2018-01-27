@@ -1,14 +1,14 @@
 package com.realestate.hcrawler.orchestration;
 
+import com.real_estates.util.CheckedFunction;
 import com.realestate.hcrawler.MercadoLibreScrapper;
 import com.realestate.hcrawler.Property;
-
-import org.openqa.selenium.WebDriver;
+import com.realestate.hcrawler.webcontext.HtmlUnitRequester;
+import com.realestate.hcrawler.webcontext.Requester;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.function.Function;
 
 public class Orchestrator {
     public static void run(int maxInstances) {
@@ -17,28 +17,28 @@ public class Orchestrator {
                 new ExecutorCompletionService<>(executor);
 
         //TODO: Get list of sources and construct the beans (Scrapper Builder)
-        List<Function<WebDriver, List<Property>>> tasks = new ArrayList<>();
-
-        WebDriverFactory.instantiateDriverObject();
-        WebDriver setupDriver = WebDriverFactory.getDriver();
+        List<CheckedFunction<Requester, List<Property>>> tasks = new ArrayList<>();
 
         // Join all tasks from all scrappers
-        tasks.addAll(new MercadoLibreScrapper(
-                "https://inmuebles.mercadolibre.com.mx/casas/venta/baja-california/tijuana/",
-                setupDriver).getTasks());
-        
-        tasks.addAll(new MercadoLibreScrapper(
-                "https://inmuebles.mercadolibre.com.mx/casas/venta/queretaro/queretaro/",
-                setupDriver).getTasks());
+        try {
+            tasks.addAll(new MercadoLibreScrapper(
+                    "https://inmuebles.mercadolibre.com.mx/casas/venta/baja-california/tijuana/",
+                    new HtmlUnitRequester()).getTasks());
+        } catch (Exception e) {
+            //TODO: Implement real error handling
+            e.printStackTrace();
+        }
 
         System.out.printf("Working with %d tasks \n", tasks.size());
 
         tasks.forEach(task -> completionService.submit(() -> {
-            WebDriverFactory.clearCookies();
-
-            WebDriver driver = WebDriverFactory.getDriver();
-
-            return task.apply(driver);
+            try {
+                return task.apply(new HtmlUnitRequester());
+                //TODO: Implement real error handling
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ArrayList<>();
+            }
         }));
 
         int totalTasks = tasks.size();
@@ -51,12 +51,9 @@ public class Orchestrator {
                 completed ++;
             }
 
+            executor.shutdown();
+
             System.out.printf("Got %d properties \n", properties.size());
-
-            WebDriverFactory.closeDriverObjects();
-
-            //TODO: FIX program not terminating, needed to put this line but its not correct
-            System.exit(0);
 
             //TODO: Implement real exception handling
         } catch (InterruptedException e) {

@@ -1,46 +1,45 @@
 package com.realestate.hcrawler;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.real_estates.util.CheckedFunction;
+import com.realestate.hcrawler.webcontext.Requester;
+import com.realestate.hcrawler.webcontext.WebContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class MercadoLibreScrapper implements TaskSubmitter {
 
     private String rootUrl;
-    private WebDriver driver;
+    private Requester requester;
+    private WebContext mainContext;
 
-    public MercadoLibreScrapper(String rootUrl, WebDriver driver) {
+    public MercadoLibreScrapper(String rootUrl, Requester requester) {
         this.rootUrl = rootUrl;
-        this.driver = driver;
+        this.requester = requester;
     }
 
     @Override
-    public List<Function<WebDriver, List<Property>>> getTasks() {
-        driver.get(rootUrl);
+    public List<CheckedFunction<Requester, List<Property>>> getTasks() throws Exception {
+        mainContext = requester.get(rootUrl);
 
         //TODO: Add error handling (Element not found)
-        int entriesPerPage = getEntries(driver).size();
-        float totalEntries = getResultsCount(driver);
+        int entriesPerPage = getEntries(mainContext).size();
+        float totalEntries = getResultsCount(mainContext);
 
         int totalPages = (int) Math.ceil(totalEntries / entriesPerPage);
 
-        List<Function<WebDriver, List<Property>>> tasks = new ArrayList<>();
+        List<CheckedFunction<Requester, List<Property>>> tasks = new ArrayList<>();
         for (int i=0; i < totalPages; i++) {
             final int entryCount = entriesPerPage * i + 1;
 
-            tasks.add((webDriver) -> {
+            tasks.add((requester) -> {
                 String url = String.format("%s_Desde_%d", rootUrl, entryCount);
-
-                webDriver.get(url);
-                List<WebElement> entries = getEntries(webDriver);
-
-                return entries
+                WebContext context = requester.get(url);
+                return getEntries(context)
                         .stream()
                         .map(this::entryToProperty)
                         .collect(Collectors.toList());
@@ -51,17 +50,17 @@ public class MercadoLibreScrapper implements TaskSubmitter {
     }
 
     //TODO: Move selectors to config file
-    private Property entryToProperty(WebElement entry) {
+    private Property entryToProperty(WebContext entry) {
         Property property = new Property();
 
-        WebElement link = entry.findElement(By.className("item__info-link "));
+        WebContext link = entry.find(".item__info-link ");
         property.setUrl(link.getAttribute("href"));
 
-        WebElement price = link.findElement(By.className("price__fraction"));
+        WebContext price = link.find(".price__fraction");
         String priceText = price.getText().replace(",", "");
         property.setPrice(Float.valueOf(priceText));
 
-        WebElement addressElement = link.findElement(By.className("item__title"));
+        WebContext addressElement = link.find(".item__title");
         property.setAddress(parseAddress(addressElement.getText()));
 
         //TODO: Remove hardcoding
@@ -79,28 +78,31 @@ public class MercadoLibreScrapper implements TaskSubmitter {
 
         if (parts.length == 4) {
             address.setState(parts[3]);
-            address.setCity(parts[2]);
+            address.setCountry(parts[2]);
             address.setNeighborhood(parts[1]);
         } else if (parts.length == 3) {
             address.setState(parts[2]);
-            address.setCity(parts[1]);
+            address.setCountry(parts[1]);
             address.setNeighborhood(parts[0]);
         } //TODO else: throw error/notify
 
         return address;
     }
 
-    private int getResultsCount(WebDriver driver) {
-        String results = driver
-                .findElement(By.className("quantity-results"))
-                .getText()
-                .replace(",", "")
-                .split(" ")[0];
-        return Integer.valueOf(results);
+    private int getResultsCount(WebContext context) {
+        String results = context
+                .find(".quantity-results")
+                .getText();
+        Matcher matcher = Pattern.compile("\\d+").matcher(results);
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group(0));
+        } //TODO: else throw error
+        else {
+            return 0;
+        }
     }
 
-    private List<WebElement> getEntries(WebDriver driver) {
-        return driver.findElements(
-                By.className("results-item"));
+    private List<WebContext> getEntries(WebContext context) {
+        return context.findAll(".results-item");
     }
 }
