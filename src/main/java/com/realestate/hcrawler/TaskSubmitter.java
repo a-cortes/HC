@@ -1,6 +1,6 @@
 package com.realestate.hcrawler;
 
-import com.real_estates.util.CheckedFunction;
+import com.realestate.hcrawler.util.CheckedFunction;
 import com.realestate.hcrawler.webcontext.Requester;
 
 import java.util.List;

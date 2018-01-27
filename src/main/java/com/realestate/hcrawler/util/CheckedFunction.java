@@ -1,4 +1,4 @@
-package com.real_estates.util;
+package com.realestate.hcrawler.util;
 
 /** https://stackoverflow.com/questions/18198176/java-8-lambda-function-that-throws-exception **/
 

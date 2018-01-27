@@ -1,8 +1,8 @@
 package com.realestate.hcrawler.orchestration;
 
-import com.real_estates.util.CheckedFunction;
 import com.realestate.hcrawler.MercadoLibreScrapper;
 import com.realestate.hcrawler.Property;
+import com.realestate.hcrawler.util.CheckedFunction;
 import com.realestate.hcrawler.webcontext.HtmlUnitRequester;
 import com.realestate.hcrawler.webcontext.Requester;
 
